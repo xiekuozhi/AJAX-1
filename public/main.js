@@ -1,3 +1,5 @@
+let n =1
+
 
 getCSS.onclick = () => {
     const request = new XMLHttpRequest();
@@ -67,5 +69,24 @@ getJSON.onclick = () => {
 
         }
     }
+    request.send();
+};
+
+getPage.onclick=()=>{
+    const request=new XMLHttpRequest()
+    request.open('GET',`/page${n + 1}`)
+    request.onreadystatechange=()=>{
+        if(request.readyState===4 && request.status===200){
+            const array=JSON.parse(request.response)
+            array.forEach(item => {
+                const li =document.createElement('li')
+                li.textContent=item.id
+                xxx.appendChild(li);
+            });
+            n+=1
+        }
+        
+    }
+
     request.send();
 }
